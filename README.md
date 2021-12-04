@@ -24,3 +24,5 @@ Pour la température du CPU, nous l'avons récupérer grâce à une commande sp�
 Pour la température à Paris, nous l'avons récupérer grâce à une API d'un site de météo OpenWeather.
 
 Pour afficher ces informations, nous avons utilisé un bloc "change" qui permet de les exporter vers un dashboard.
+
+Source utilisée : https://www.youtube.com/watch?v=tTqgzg4zmwk
