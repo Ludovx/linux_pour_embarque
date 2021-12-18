@@ -26,3 +26,21 @@ Pour la température à Paris, nous l'avons récupérer grâce à une API d'un s
 Pour afficher ces informations, nous avons utilisé un bloc "change" qui permet de les exporter vers un dashboard.
 
 Source utilisée : https://www.youtube.com/watch?v=tTqgzg4zmwk
+
+# Projet 4
+NB : Ce projet a été réalisé en binôme. Celui-ci est donc composé de : FLORES Thibault et DUVAL Ludovic
+
+Pour ce projet, nous allons utiliser deux RaspberryPI. Le but du projet est de connecter les deux cartes à l'aide d'un Broker qui, dans notre cas, est Mosquitto. 
+Le but était, dans un premier temps, d'envoyer différentes informations provenants d'une des cartes à l'autre carte afin qu'elle les affiche sur un dashboard. 
+Les informations en question sont des mesures de température, pression, humidité et accélération. 
+Ces mesures sont réalisées à l'aide d'un module supplémentaire de la carte Raspberry appelé Sense-Hat.
+
+Dans la pratique, il se trouve que le Sense-Hat ne peut pas communiquer à la fois les informations d'environnement (température, pression et humidité) et l'accélération.
+
+Nous avons donc décidé de modifier l'objectif du projet : une des deux cartes enverra les informations d'environnement à l'autre, et l'autre enverra les informations
+d'accélération à l'autre.
+
+Ainsi, nous utilisons deux Sense-Hat, montés chacun sur une des deux cartes, que nous utilisons pour capter les différentes informations.
+
+Pour effectuer ce projet, nous avons utilisé Node-Red. Nous avons notamment utilisé certains blocs trouvés sur ce lien GitHub : 
+https://github.com/mpolinowski/PiSenseHat-Node-RED
