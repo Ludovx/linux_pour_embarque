@@ -1,0 +1,237 @@
+[
+    {
+        "id": "e5d5b629ddbe3ac2",
+        "type": "tab",
+        "label": "Projet_4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e396ba959b8ab0b7",
+        "type": "mqtt out",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "",
+        "topic": "projet_4",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b12e491276320595",
+        "x": 460,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a653a354da5b8523",
+        "type": "rpi-sensehat in",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "",
+        "motion": false,
+        "env": true,
+        "stick": false,
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "e396ba959b8ab0b7"
+            ]
+        ]
+    },
+    {
+        "id": "bc3a2349530fbba9",
+        "type": "mqtt in",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "",
+        "topic": "projet_4_text",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b12e491276320595",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "5b84dc5754dde4d7"
+            ]
+        ]
+    },
+    {
+        "id": "5b84dc5754dde4d7",
+        "type": "rpi-sensehat out",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "",
+        "x": 490,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fdaedaf691d663c5",
+        "type": "switch",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "stick",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "motion",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 440,
+        "wires": [
+            [
+                "53c4c23055b5616d"
+            ]
+        ]
+    },
+    {
+        "id": "53c4c23055b5616d",
+        "type": "change",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "acceleration",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acceleration",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 440,
+        "wires": [
+            [
+                "5bfaa17073b731a8"
+            ]
+        ]
+    },
+    {
+        "id": "5bfaa17073b731a8",
+        "type": "ui_text",
+        "z": "e5d5b629ddbe3ac2",
+        "group": "61a165b1e076ec7c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "acceleration",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 870,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3a254a03f3f06307",
+        "type": "comment",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "La RPI reçoit l'accélération de l'autre RPI",
+        "info": "",
+        "x": 400,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b8e42b4261865ef8",
+        "type": "mqtt in",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "",
+        "topic": "projet_4_acceleration",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b12e491276320595",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 440,
+        "wires": [
+            [
+                "fdaedaf691d663c5"
+            ]
+        ]
+    },
+    {
+        "id": "bce41d0c4cc1e39a",
+        "type": "comment",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "La RPI reçoit un texte à afficher de l'autre RPI",
+        "info": "",
+        "x": 410,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2221c4a722e14588",
+        "type": "comment",
+        "z": "e5d5b629ddbe3ac2",
+        "name": "La RPI envoie les données d'environnement à l'autre RPI",
+        "info": "",
+        "x": 450,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b12e491276320595",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.81.28",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "61a165b1e076ec7c",
+        "type": "ui_group",
+        "name": "Motion",
+        "tab": "55925672.3514d8",
+        "order": 5,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "55925672.3514d8",
+        "type": "ui_tab",
+        "name": "PiSenseHAT",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

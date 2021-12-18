@@ -1,0 +1,494 @@
+[
+    {
+        "id": "f310f517cfbeed05",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1837f13fca854c45",
+        "type": "mqtt out",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "topic": "projet_4_acceleration",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b12e491276320595",
+        "x": 460,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cb3fc36c84d6bea0",
+        "type": "rpi-sensehat in",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "motion": true,
+        "env": false,
+        "stick": false,
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "1837f13fca854c45"
+            ]
+        ]
+    },
+    {
+        "id": "f64cc252a4df4a1b",
+        "type": "comment",
+        "z": "f310f517cfbeed05",
+        "name": "La RPI envoie un texte à afficher à l'autre RPI",
+        "info": "",
+        "x": 370,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1aa61799876f2a24",
+        "type": "comment",
+        "z": "f310f517cfbeed05",
+        "name": "La RPI envoie les données d'accélération à l'autre RPI",
+        "info": "",
+        "x": 400,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d16fc65f6971e06e",
+        "type": "change",
+        "z": "f310f517cfbeed05",
+        "name": "temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "5a01ea9428011f73"
+            ]
+        ]
+    },
+    {
+        "id": "caf1934f34011c86",
+        "type": "switch",
+        "z": "f310f517cfbeed05",
+        "name": "env",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "environment",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 427,
+        "wires": [
+            [
+                "d16fc65f6971e06e",
+                "a1f82eeeccf529a7",
+                "faac7225debc10d6"
+            ]
+        ]
+    },
+    {
+        "id": "164f84ce5ab30438",
+        "type": "ui_gauge",
+        "z": "f310f517cfbeed05",
+        "name": "Thermometer",
+        "group": "f9412ecc.e353b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thermometer",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 805,
+        "y": 377,
+        "wires": []
+    },
+    {
+        "id": "a1f82eeeccf529a7",
+        "type": "change",
+        "z": "f310f517cfbeed05",
+        "name": "hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 511.5,
+        "y": 467,
+        "wires": [
+            [
+                "a663ce74a8a2aadb"
+            ]
+        ]
+    },
+    {
+        "id": "b8a086695added72",
+        "type": "ui_gauge",
+        "z": "f310f517cfbeed05",
+        "name": "Hygrometer",
+        "group": "f9412ecc.e353b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Hygrometer",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 797.5,
+        "y": 467,
+        "wires": []
+    },
+    {
+        "id": "faac7225debc10d6",
+        "type": "change",
+        "z": "f310f517cfbeed05",
+        "name": "atm",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.pressure",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 520,
+        "wires": [
+            [
+                "46f2152fd79187f1"
+            ]
+        ]
+    },
+    {
+        "id": "c4796a4af7278ad3",
+        "type": "ui_gauge",
+        "z": "f310f517cfbeed05",
+        "name": "Barometer",
+        "group": "f9412ecc.e353b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Barometer",
+        "label": "mbar",
+        "format": "{{value}}",
+        "min": "900",
+        "max": "1100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 796,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "80330e9e2f575411",
+        "type": "comment",
+        "z": "f310f517cfbeed05",
+        "name": "La RPI reçoit les données d'environnement de l'autre RPI",
+        "info": "",
+        "x": 410,
+        "y": 376,
+        "wires": []
+    },
+    {
+        "id": "b3c1950c48004229",
+        "type": "ui_chart",
+        "z": "f310f517cfbeed05",
+        "name": "Temperature Graph",
+        "group": "398715c2.3c77ea",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 816,
+        "y": 424,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a01ea9428011f73",
+        "type": "smooth",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "1",
+        "mult": "single",
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "b3c1950c48004229",
+                "164f84ce5ab30438"
+            ]
+        ]
+    },
+    {
+        "id": "a663ce74a8a2aadb",
+        "type": "smooth",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "1",
+        "mult": "single",
+        "x": 641,
+        "y": 467,
+        "wires": [
+            [
+                "b8a086695added72"
+            ]
+        ]
+    },
+    {
+        "id": "46f2152fd79187f1",
+        "type": "smooth",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "1",
+        "mult": "single",
+        "x": 638.5,
+        "y": 520,
+        "wires": [
+            [
+                "c4796a4af7278ad3"
+            ]
+        ]
+    },
+    {
+        "id": "541397436763a789",
+        "type": "mqtt in",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "topic": "projet_4",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b12e491276320595",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "caf1934f34011c86"
+            ]
+        ]
+    },
+    {
+        "id": "0478e125e75cd5e6",
+        "type": "mqtt out",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "topic": "projet_4_text",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b12e491276320595",
+        "x": 470,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9072146e372fe648",
+        "type": "ui_text_input",
+        "z": "f310f517cfbeed05",
+        "name": "",
+        "label": "Entrer un texte :",
+        "tooltip": "",
+        "group": "270650184263933b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 280,
+        "y": 300,
+        "wires": [
+            [
+                "0478e125e75cd5e6"
+            ]
+        ]
+    },
+    {
+        "id": "b12e491276320595",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.81.28",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f9412ecc.e353b",
+        "type": "ui_group",
+        "name": "Environment Control",
+        "tab": "55925672.3514d8",
+        "order": 1,
+        "disp": true,
+        "width": "7",
+        "collapse": false
+    },
+    {
+        "id": "398715c2.3c77ea",
+        "type": "ui_group",
+        "name": "Temperature Graph",
+        "tab": "55925672.3514d8",
+        "order": 2,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "270650184263933b",
+        "type": "ui_group",
+        "name": "raspberrycpu",
+        "tab": "3f64e65f9ad7fbec",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": "po"
+    },
+    {
+        "id": "55925672.3514d8",
+        "type": "ui_tab",
+        "name": "PiSenseHAT",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3f64e65f9ad7fbec",
+        "type": "ui_tab",
+        "name": "Temp CPU",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
