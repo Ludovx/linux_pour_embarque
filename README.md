@@ -49,8 +49,6 @@ https://github.com/mpolinowski/PiSenseHat-Node-RED
 Le but de ce projet était, dans un premier temps, de prendre en main la technologie BLE et de l'utiliser afin de transmettre des informations.
 Dans un deuxième temps, le but était de créer un buildroot et d'y intégrer notre interface BLE.
 
-Lors de la réalisation de ce projet, j'ai rencontré énormément de problèmes et je suis dans l'incapacité de déposer un travail complet et totalement fonctionnel.
-
-NB : la deuxième partie du projet a été réaliser en binôme avec l'aide de FLORES Thibault. Nous avons donc la même image buildroot. 
+Lors de la réalisation de ce projet, j'ai rencontré énormément de problèmes et je suis dans l'incapacité de déposer un travail complet et totalement fonctionnel. 
 
 La documentation utilisée pour faire ce projet fut celle fournie dans le drive de description du projet. 
