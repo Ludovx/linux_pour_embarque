@@ -1,0 +1,89 @@
+[
+    {
+        "id": "b53f3bfb90db0727",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a2ec8a1ad8e95fb7",
+        "type": "Generic BLE in",
+        "z": "b53f3bfb90db0727",
+        "name": "",
+        "genericBle": "c401f1348a51bbee",
+        "useString": false,
+        "notification": true,
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "cf5b25dc86b299a6"
+            ]
+        ]
+    },
+    {
+        "id": "a56041962fb8e607",
+        "type": "Generic BLE out",
+        "z": "b53f3bfb90db0727",
+        "name": "in",
+        "genericBle": "c401f1348a51bbee",
+        "x": 570,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4f8db1ce21e522a6",
+        "type": "inject",
+        "z": "b53f3bfb90db0727",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "Chiffre",
+        "payloadType": "date",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "a56041962fb8e607"
+            ]
+        ]
+    },
+    {
+        "id": "cf5b25dc86b299a6",
+        "type": "debug",
+        "z": "b53f3bfb90db0727",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "c401f1348a51bbee",
+        "type": "Generic BLE",
+        "localName": "Bob's A70",
+        "address": "76:a1:ca:09:b7:5e",
+        "uuid": "76a1ca09b75e",
+        "characteristics": []
+    }
+]
